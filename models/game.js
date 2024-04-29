@@ -9,7 +9,7 @@ const gameSchema = new mongoose.Schema({
     result: String,
     message: String,
     updatedMoney: Number,//Amount
-    delivery:Number,
+    delivery:Number,//if they win
     gameType: String,
     message:{type:String,enum:['win','lost']},
     gameTiming:{type:Number,default:15},//in second

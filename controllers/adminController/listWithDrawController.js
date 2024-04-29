@@ -13,14 +13,12 @@ export const withdrawTransaction = async (req, res) => {
 
         // Extract amount from the request body
         const { amount } = req.body;
-        
         // Set status to 'pending' for withdrawal transactions
         const status = 'pending';
         // Set transaction type to 'account' for withdrawal transactions
         const transactionType = 'account';
         // Set account type to 'withdraw' for withdrawal transactions
         const account = 'withdraw';
-
         // Create a new withdrawal transaction with current date and the received amount
         const newWithdrawalTransaction = new AdminTransaction({
             amount,
@@ -28,10 +26,8 @@ export const withdrawTransaction = async (req, res) => {
             transactionType,
             account,
         });
-
         // Save the new withdrawal transaction to the database
         const savedTransaction = await newWithdrawalTransaction.save();
-
         // Respond with success message and the saved transaction data
         res.status(201).json({ success: true, message: 'Withdrawal transaction created successfully', transaction: savedTransaction });
     } catch (error) {

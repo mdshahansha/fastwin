@@ -37,6 +37,9 @@ const jwtAuth = (req, res, next) => {
     req.userID = payload.userID;
   } catch (err) {
     // 4. return error.
+    if (err.name === 'TokenExpiredError') {
+      return res.status(401).send('Token expired! Please login again');
+  }
     console.log(err);
     return res.status(401).send('Unauthorized');
   }
@@ -71,6 +74,8 @@ export default jwtAuth;
 // };
 
 // Middleware for updating status based on last login timestamp
+
+
 export const updateStatus = async () => {
   try {
       // Find inactive users who haven't logged in for a certain period

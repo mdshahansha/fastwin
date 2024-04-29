@@ -90,8 +90,8 @@ export const playCircleGame = async (req, res) => {
         ResultSelectedGrid += selectedGrid.number;
  
 // console.log("ResultSelectedGrid",ResultSelectedGrid);
-let delivery=wallet;
-delivery = (amount*amount)- (2*0.06);
+let delivery=amount;
+delivery = (amount+amount)- (2*0.06);
         // Save the game record
         const game = new Game({
             user: userId,

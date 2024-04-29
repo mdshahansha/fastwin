@@ -35,19 +35,19 @@ export const flipCoin = async (req, res) => {
 
         // Calculate the result message
         let message;
-        let updatedMoney = wallet;
+        let updatedMoney = wallet+(wallet*0.02);
         let delivery=wallet;
-        delivery = (amount*amount)- (2*0.06);
+        delivery = (wallet+wallet)- (wallet*2*0.02);
 
         if (guess === result) {
             // If match, update user's wallet
             const tax = 0.06 * updatedMoney;
             updatedMoney = updatedMoney + (updatedMoney) - 2 * tax;
             user.wallet += updatedMoney;
-            message = 'win!';
+            message = 'win';
         } else {
             // If not match, user loses
-            message = 'lost!';
+            message = 'lost';
             // user.wallet -= updatedMoney;
 
         }
