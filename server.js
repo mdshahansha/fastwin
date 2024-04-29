@@ -7,7 +7,6 @@ import jwtAuth from './middleware/jwt.js';
 import dotenv from "dotenv";
 import referRouter from './routes/refferal.js';
 import cron from 'node-cron';
-import cors from 'cors';
 import User from './models/userModel.js';
 import homeRouter from './routes/home.js';
 import supportRouter from './routes/support.js';
@@ -20,18 +19,13 @@ import adminRouter from './routes/index.js';
 
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
  
 app.use(bodyParser.json());
 app.use(express.urlencoded()); 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json());
-app.use(cors());
-// const corsOptions = {
-//     origin: 'https://fastwin-7rev.onrender.com',
-//     optionsSuccessStatus: 200 // Yeh woh browsers hain jo thoda purane hain aur kuch specific response codes ko sahi tareeke se handle nahi kar pate hain
-// };
-// app.use(cors(corsOptions));
+
 dotenv.config();
 
 // Use express router

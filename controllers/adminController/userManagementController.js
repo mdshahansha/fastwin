@@ -211,7 +211,7 @@ export const updateUser = async (req, res) => {
         // Update the user's status if provided
         if (status !== undefined) {
             user.status = status;
-        } 
+        }
 
         // Save the updated user
         await user.save();

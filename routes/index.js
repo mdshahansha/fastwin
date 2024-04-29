@@ -7,9 +7,9 @@ import { getAllTransactionsByUserId, withdrawTransaction } from '../controllers/
 import { deleteComplain, getAllComplains, getUserByComplainId, updateComplainStatus } from '../controllers/adminController/helpSupportController.js';
 import { adminUpdate, getAdminProfileById } from '../controllers/adminController/adminProfile.js';
 import { getAdminAmountData } from '../controllers/adminController/amtAdminController.js';
-import {  calculateAndStoreBettingDetail } from '../controllers/adminController/bettingController.js';
+import { getBettingDetails } from '../controllers/adminController/bettingController.js';
 import { getDeposited } from '../controllers/adminController/depositedController.js';
-import { fetchAdminRevenueData } from '../controllers/adminController/revenueController.js';
+import { calculateAndStoreAdminProfit } from '../controllers/adminController/revenueController.js';
 import { Userlist, userStatFilterGraph, userStatGraph } from '../controllers/adminController/userManagementController.js';
 
 
@@ -58,12 +58,12 @@ adminRouter.delete('/deleteUser/:userId',jwtAuth,isAdmin,deleteUser);
 adminRouter.get('/getAdminAmountData',jwtAuth,isAdmin,getAdminAmountData);// you can sort the query sortByDate =asc, sortByTotalAmount=asc
 
 //betting details
-adminRouter.get('/getBettingDetails',jwtAuth,isAdmin,calculateAndStoreBettingDetail);//
+adminRouter.get('/getBettingDetails',jwtAuth,isAdmin,getBettingDetails);//
 
 // Deposited Amount
 adminRouter.get('/getDeposited',jwtAuth,isAdmin,getDeposited);//
 
 //Total Revenene  
-adminRouter.get('/revenueAdminProfit',jwtAuth,isAdmin,fetchAdminRevenueData);//
+adminRouter.get('/revenueAdminProfit',jwtAuth,isAdmin,calculateAndStoreAdminProfit);//
 
-export default adminRouter; 
+export default adminRouter;

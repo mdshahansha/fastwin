@@ -4,6 +4,7 @@ import User from "../models/userModel.js";
 export const isAdmin=async (req, res, next) =>{
     // Check if the user is logged in and is an admin
     const user = await User.findById(req.userID);
+// console.log("   -> ",user.isAdmin)
     if (user && user.isAdmin) {
         // User is an admin, proceed to the next middleware
         return next();
