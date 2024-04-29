@@ -1,0 +1,67 @@
+661d1d   reference code
+
+
+
+-> Middleware for Tracking Login Activity: Create a middleware function that records the user's login activity whenever 
+they log in. This middleware should update the user's last login timestamp and set their status to active.
+-> Session Management: Use session management techniques to maintain user sessions and track their login/logout activities.
+ You can use libraries like express-session for session management.(not needed)
+-> Database Update: Update the user's document in the database whenever they log in or log out. Update the lastLogin 
+field with the current timestamp and set their status to active. Additionally, you can 
+maintain a separate field to track the total login duration or the number of times they logged in.
+-> Scheduled Job for Updating Status: Implement a scheduled job (e.g., using a cron job) that periodically updates
+ the status of users based on their last login timestamp. 
+ If a user hasn't logged in for a certain period, mark them as inactive.
+ 
+
+finanacial details ->(payment)
+support -> mail & chat https://wa.me/[phone number]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yes, you can also bypass SSL certificate verification temporarily in your Node.js application. However, it's important to note that this approach should only be used for local development and testing purposes, as it undermines the security provided by SSL/TLS.
+
+Here's how you can bypass SSL certificate verification in Node.js:
+
+```javascript
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+// Your code here
+
+// Reset the environment variable to its default value after your code execution
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "1";
+```
+
+By setting `NODE_TLS_REJECT_UNAUTHORIZED` to `"0"`, you're telling Node.js to skip SSL certificate verification. However, keep in mind that this introduces security risks, as it makes your application vulnerable to man-in-the-middle attacks.
+
+Use this approach only in development environments and never in production. Make sure to revert the environment variable back to its default value (`"1"`) after your code execution.

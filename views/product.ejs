@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Razorpay Web-Integration</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+	<hr/>
+	 <h1>Payment Page</h1>
+ 
+	 <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
+			<input type="hidden" name="key_id" value="rzp_test_ddRVm5q6Bv9Ppg"/>
+			<input type="hidden" name="amount" value="<%= parseInt(payments.amount) %>"/>
+			<input type="hidden" name="order_id" value="<%= payments.createdOrderId %>" />
+			<input type="hidden" name="name" value="<%= payments.product.name %>" />
+			<input type="hidden" name="description" value="A Wild Sheep Chase"/>
+			<input type="hidden" name="image" value="https://cdn.razorpay.com/logos/BUVwvgaqVByGp2_large.jpg"/>
+			<input type="hidden" name="prefill[name]" value="<%= payments.user.name %>"/>
+			<input type="hidden" name="prefill[contact]" value="<%= payments.user.phoneNumber %>"/>
+			<input type="hidden" name="prefill[email]" value="<%= payments.user.email %>"/>
+			<input type="hidden" name="notes[shipping address]" value="L-16, The Business Centre, 61 Wellfield Road, New Delhi - 110001"/>
+			<input type="hidden" name="callback_url" value="http://localhost:3000/payment/payment-callback/<%= payments._id %>"/>
+			<input type="hidden" name="cancel_url" value="http://localhost:3000/payment/payment-cancel/<%= payments._id %>"/>
+			<button>Submit</button>
+		  </form>
+		</body>
+
+</html>
+
+<!--Inside index.html -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+$(document).ready(function(){
+	$('.pay-form').submit(function(e){
+		e.preventDefault();
+
+		var formData = $(this).serialize();
+
+		$.ajax({
+			url:"/createOrder",
+			type:"POST",
+			data: formData,
+			success:function(res){
+				if(res.success){
+					var options = {
+						"key": ""+res.key_id+"",
+						"amount": ""+res.amount+"",
+						"currency": "INR",
+						"name": ""+res.product_name+"",
+						"description": ""+res.description+"",
+						"image": "https://dummyimage.com/600x400/000/fff",
+						"order_id": ""+res.order_id+"",
+						"handler": function (response){
+							alert("Payment Succeeded");
+							// window.open("/","_self")
+						},
+						"prefill": {
+							"contact":""+res.contact+"",
+							"name": ""+res.name+"",
+							"email": ""+res.email+""
+						},
+						"notes" : {
+							"description":""+res.description+""
+						},
+						"theme": {
+							"color": "#2300a3"
+						}
+					};
+					var razorpayObject = new Razorpay(options);
+					razorpayObject.on('payment.failed', function (response){
+							alert("Payment Failed");
+					});
+					razorpayObject.open();
+				}
+				else{
+					alert(res.msg);
+				}
+			}
+		})
+
+	});
+});
+
+</script>
