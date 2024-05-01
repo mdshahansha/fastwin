@@ -10,7 +10,7 @@ dotenv.config();
 
 
 const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-
+console.log("   -----   ",twilioClient)
 export const sendOtp = async (req, res) => {
     const { phoneNumber } = req.body;
     try {
