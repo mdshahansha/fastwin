@@ -171,7 +171,7 @@ const updateReferralSchema = async (referrerId, refereeId) => {
         throw new Error('Failed to update referral schema');
     }
 };
-
+   
  
 
 export const resendOtp = async (req, res) => {
