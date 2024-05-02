@@ -1,0 +1,13 @@
+npm install @babel/preset-env --save-dev
+
+**Remember, if you're running this configuration directly with Node.js,
+you'll still need to use CommonJS syntax or configure Node.js to handle ES modules in .js files.
+
+//webpack
+npm install webpack
+npm install otenv-webpack webpack-node-externals babel-loader
+
+
+
+npm run build (install)
+npm run build-run (start)
