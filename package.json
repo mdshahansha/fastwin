@@ -36,6 +36,7 @@
     "nodemon": "^3.1.0",
     "path": "^0.12.7",
     "razorpay": "^2.9.3",
+    "serverless-http": "^3.2.0",
     "twilio": "^5.0.3",
     "url": "^0.11.3",
     "webpack": "^5.91.0",

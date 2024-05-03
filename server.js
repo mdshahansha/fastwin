@@ -15,6 +15,9 @@ import complainRouter from './routes/complain.js';
 import paymentRouter from './routes/transaction.js';
 // import imap from './controllers/supportController.js'
 import path from 'path';
+
+import  serverless from "serverless-http";
+
 import adminRouter from './routes/index.js';
 
 
@@ -98,13 +101,15 @@ export const totalAdminAmount = 1000; // Example value, you can set it to whatev
 
 
 
-app.get('/fastwin',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send(`<h1>Welcome Gaming FAST WIN .......</h1>`)
 })
 
-app.listen(PORT, () => {
-    
+app.listen(PORT, () => {    
   console.log(`Gaming Server is running on ${PORT}`);
   connectUsingMongoose();
     
 });
+
+module.exports = app;
+module.exports.handler = serverless(app);
