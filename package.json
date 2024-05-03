@@ -1,16 +1,13 @@
 {
-  "name": "2_game",
+  "name": "2_game_deploy",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node server.js",
-    "build": "npx webpack --config webpack.config.js",
-    "build-run": "node dist/index.js"
+    "start": "node server.js"
   },
-  "keywords": [],
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
